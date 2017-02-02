@@ -1,0 +1,6 @@
+Figure out the GNU install -> Both Partitions Links on page
+Learn The Fortran
+OPENMPI
+MAKEFILE?
+LAPACK
+
