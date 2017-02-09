@@ -1,13 +1,11 @@
+!http://www.math.hawaii.edu/~hile/fortran/fort3.htm
 program question1
 	implicit none
 	integer :: N, i, j
-	real :: test
-	integer ::whaaa
+	double precision :: test
 	real, dimension(:,:), allocatable :: A, B, C
-	whaaa=selected_real_kind(0,100)
-	real(kind=8) :: bound
-	bound=10**(100)
-	print*, whaaa
+	double precision :: bound
+	bound=10D100
 	write(*,*) "Please enter the size of the arrays, N"
 	read(*,*) N
 	!CREATE A
@@ -22,11 +20,11 @@ program question1
 	do i=1, N, 1
 		do j=1, N, 1
 			test=bij(i,j,N)
-!			if(test .LE. (10**(100))) then
-!				B(i,j)=test
-!			else
-!				B(i,j)=complement(i,j,N)
-!			endif
+			if(test .LE. bound) then
+				B(i,j)=test
+			else
+				B(i,j)=complement(i,j,N)
+			endif
 		enddo
 	enddo
 
@@ -60,13 +58,13 @@ contains
 		curly=sin(real(a))/(cos(real(b))*tan(real(a+b)))
 	end function curly
 
-	real function bij(i,j,N)
+	double precision function bij(i,j,N)
 		implicit none
 		integer, intent(IN) :: i, j, N
 		bij=((-1)**(i+j))*(i+j-1)*parens(N+i-1,N-j)*parens(N+j-1,N-i)*((parens(i+j-2,i-1))**2)
 	end function bij
 
-	real function complement(i,j,N)
+	double precision function complement(i,j,N)
 		implicit none
 		integer, intent(IN) :: i, j, N
 		complement=((-1)**(i+j))*((i+j-1)**2)*((curly(N+i-1, N-j))**3)*((curly(N+j-1,N-i))**4)*((curly(i+j-2,i-1))**5)
