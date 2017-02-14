@@ -3,11 +3,12 @@ program question1
 	implicit none
 	integer :: N, i, j
 	double precision :: test
-	real, dimension(:,:), allocatable :: A, B, C
+	double precision, dimension(:,:), allocatable :: A, B, C
 	double precision :: bound
 	bound=10D100
 	write(*,*) "Please enter the size of the arrays, N"
 	read(*,*) N
+	
 	!CREATE A
 	allocate(A(N,N))
 	do i=1, N, 1
@@ -15,6 +16,7 @@ program question1
 			A(i,j)=1/(real(i)+real(j)-1)
 		enddo
 	enddo
+
 	!CREATE B
 	allocate(B(N,N))
 	do i=1, N, 1
@@ -25,8 +27,8 @@ program question1
 			else
 				B(i,j)=complement(i,j,N)
 			endif
-		enddo
-	enddo
+		continue	
+	continue
 
 	!WRITE
 	do i=1, N, 1
@@ -34,28 +36,38 @@ program question1
 	enddo
 	deallocate(A)
 	deallocate(B)
+
 contains
-	integer function fact(n)
+	integer function fact(a)
 		implicit none
-		integer, intent(IN) :: n
+		integer, intent(IN) :: a
 		integer p
 		p=1
-		do i=1,n
-			p=p*i
-		enddo
-		fact=p
+		
+		if(a .eq. 0) then
+			fact=1
+		else if(a .LE. 0) then
+			print*, "This is not an allowed value for factorial"
+			stop
+		else
+			do i=1,a
+				p=p*i
+			enddo
+			fact=p
+		endif
+
 	end function fact
 	
-	real function parens(a,b)
+	integer function parens(a,b)
 		implicit none
 		integer, intent(IN) :: a, b
 		parens = fact(a)/(fact(b)*fact(a-b))
 	end function parens
 
-	real function curly(a,b)
+	double precision function curly(a,b)
 		implicit none
 		integer, intent(in) :: a, b
-		curly=sin(real(a))/(cos(real(b))*tan(real(a+b)))
+		curly=dble(sin(real(a))/(cos(real(b))*tan(real(a+b))))
 	end function curly
 
 	double precision function bij(i,j,N)
