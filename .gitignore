@@ -1,6 +1,5 @@
 *.exe
 ./mat_vecs
 *.12
-*.mod
 main_exe
 

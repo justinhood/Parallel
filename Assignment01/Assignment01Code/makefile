@@ -1,5 +1,11 @@
 FC90 = gfortran
-vector_files = q1_main.f90 q1_mod.f90
+
+##############   Q1   ###############
+#vector_files = q1_main.f90 q1_mod.f90
+
+##############  Q2  #################
+vector_files = q2_main.f90 q1_mod.f90
+
 
 all: main_exe
 
