@@ -103,8 +103,10 @@ module q1_mod
 
 	subroutine makeC(A,B,C,N)
 		implicit none
+		integer, intent(in) :: N
 		real(kind=mykind), allocatable, dimension(:,:), intent(inout) :: A,B,C
 		integer :: i, j, k
 		
 		allocate(C(N,N))
+	end subroutine makeC
 end module q1_mod
