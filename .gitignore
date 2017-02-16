@@ -1,2 +1,4 @@
 *.exe
-./mat_vec
+./mat_vecs
+*.12
+

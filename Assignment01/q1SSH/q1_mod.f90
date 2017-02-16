@@ -122,6 +122,6 @@ module q1_mod
 				endif
 			enddo
 		enddo
-
 	end subroutine makeC
+
 end module q1_mod
