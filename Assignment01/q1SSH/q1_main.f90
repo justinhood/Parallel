@@ -1,21 +1,25 @@
 program q1_main
 	use q1_mod
 	implicit none
+	real(kind=mykind) :: time1, time2
 
 !	integer, parameter :: mykind=selected_real_kind(16,300)
 	real(kind=mykind), allocatable, dimension(:,:) :: A, B, C
 	integer N
-	integer i, j
+	integer :: i, j
+	integer countN
 	
-	
+	call CPU_TIME(time1)
 	!READ N
 	open(unit=1, file="q1_input.txt")
 	read(1,*) N
 	close(1)
 	
 	call makeA(A, N)
-	call makeB(B, N)
+	call makeB(B, N, countN)
 	call makeC(A,B,C,N)
+
+	call CPU_TIME(time2)
 
 	!Print to check for now
 !	write(12,*) "MATRIX A"
@@ -42,6 +46,12 @@ program q1_main
 	write(12,*) ''
 
 	write(12,*) "CN(N,N)=", C(N,N)
+	write(12,*) ''
+
+	write(12,*) "count(N)=", countN
+	write(12,*) ''
+
+	write(12,*) "T_(1,Q1)(N)=", time2-time1
 	write(12,*) ''
 
 	deallocate(A,B,C)

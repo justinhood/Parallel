@@ -20,13 +20,14 @@ module q1_mod
 	end subroutine makeA
 	
 	!Create the B matrix
-	subroutine makeB(B,N)
+	subroutine makeB(B,N,countN)
 		implicit none
 		real(kind=mykind), allocatable, dimension(:,:), intent(inout) :: B
 		real(kind=mykind) :: test
 		integer, intent(in) :: N
+		integer, intent(inout) :: countN
 		integer :: i,j
-
+		countN=0
 		allocate(B(N,N))
 
 		do i=1, N
@@ -36,6 +37,7 @@ module q1_mod
 					B(i,j)=test
 				else 
 					B(i,j)=complement(i,j,N)
+					countN=countN+1
 				endif
 			enddo
 		enddo
@@ -93,12 +95,12 @@ module q1_mod
 	function fact(a)
 		implicit none
 		integer, intent(in) :: a
-		integer :: i, f, fact
-		f=1
+		integer :: i
+		real(kind=mykind) :: fact
+		fact=1
 		do i=1, a
-			f=f*i
+			fact=fact*i
 		enddo
-		fact = f
 	end function fact
 
 	subroutine makeC(A,B,C,N)
