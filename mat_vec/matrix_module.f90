@@ -19,7 +19,7 @@
 			implicit none
 			integer, parameter :: mykind = selected_real_kind(16,300)
 			real(kind=mykind), allocatable, dimension(:,:) :: B_mat
-			integer intent(in) :: M, N
+			integer, intent(in) :: M, N
 			integer :: i, j
 
 			allocate(B_mat(M,N))
