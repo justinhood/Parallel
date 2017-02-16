@@ -31,8 +31,8 @@ module q1_mod
 
 		do i=1, N
 			do j=1, N
-				test=abs(bij(i,j,N))
-				if(test .LE. 10d100) then
+				test=bij(i,j,N)
+				if(abs(test) .LE. 10d100) then
 					B(i,j)=test
 				else 
 					B(i,j)=complement(i,j,N)
@@ -101,4 +101,10 @@ module q1_mod
 		fact = f
 	end function fact
 
+	subroutine makeC(A,B,C,N)
+		implicit none
+		real(kind=mykind), allocatable, dimension(:,:), intent(inout) :: A,B,C
+		integer :: i, j, k
+		
+		allocate(C(N,N))
 end module q1_mod
