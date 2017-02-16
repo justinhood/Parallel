@@ -38,10 +38,10 @@ program q1_main
 	write(12,*) "N=", N
 	write(12,*) ''
 
-	write(12,*) "bN(N/2, N/2)=", b(n/2,n/2)
+	write(12,*) "CN(N/2, N/2)=", C(n/2,n/2)
 	write(12,*) ''
 
-	write(12,*) "bN(N,N)=", b(N,N)
+	write(12,*) "CN(N,N)=", C(N,N)
 	write(12,*) ''
 
 	deallocate(A,B,C)
