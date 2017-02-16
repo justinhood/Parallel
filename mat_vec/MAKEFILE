@@ -1,0 +1,8 @@
+FC90 = gfortran
+vector_files = main.f90 matrix_module.f90
+all:main_exe
+
+main_exe:$(vector_files)
+	 $(FC90) $(vector_files) -o $@
+clean:
+	rm *_exe *.mod
