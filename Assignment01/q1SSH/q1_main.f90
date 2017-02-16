@@ -15,7 +15,8 @@ program q1_main
 	
 	call makeA(A, N)
 	call makeB(B, N)
-	
+	call makeC(A,B,C,N)
+
 	!Print to check for now
 	write(12,*) "MATRIX A"
 	do i=1, N
@@ -27,6 +28,12 @@ program q1_main
 	write(12,*) "Matrix B"
 	do i=1, N
 		write(12, *) (B(i,j), j=1, N)
+	enddo
+	write(12,*) ''
+	write(12,*) ''
+	write(12,*) "Matrix C"
+	do i=1, N
+		write(12, *) (C(i,j), j=1, N)
 	enddo
 
 

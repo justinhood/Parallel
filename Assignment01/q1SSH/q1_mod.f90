@@ -106,7 +106,22 @@ module q1_mod
 		integer, intent(in) :: N
 		real(kind=mykind), allocatable, dimension(:,:), intent(inout) :: A,B,C
 		integer :: i, j, k
-		
+		real(kind=mykind) :: summer
 		allocate(C(N,N))
+
+		do i=1, N
+			do j=1, N
+				summer=0
+				do k=1, N
+					summer=summer + A(i,k)*B(k,j)
+				enddo
+				if(abs(summer) .LE. 10d300) then
+					C(i,j)=summer
+				else
+					c(i,j)=i**j
+				endif
+			enddo
+		enddo
+
 	end subroutine makeC
 end module q1_mod
