@@ -2,4 +2,4 @@
 ./mat_vecs
 *.12
 main_exe
-
+*.out
