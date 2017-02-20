@@ -7,7 +7,7 @@ program q2_main
 	real(kind=mykind), allocatable, dimension(:,:) :: A, B, C
 	integer :: sizer
 	integer, allocatable, dimension(:) :: N, k, countN, half, full, times
-	integer :: i, j
+	integer :: i, j, loopy
 	
 	character :: format1, format2, col1, col2, col3, col4, col5
 
@@ -55,6 +55,20 @@ program q2_main
 		half(i)=C(N(i)/2, N(i)/2)
 		full(i)=C(N(i),N(i))
 		times(i)=time2-time1
+		
+!		write(12,*) "MATRIX A"
+!		do loopy=1, N(i)
+!			write(12,*) (A(i,j), j=1,N(i))
+!		enddo
+!
+!		write(12,*) ''
+!		write(12,*) ''
+!		write(12,*) "Matrix B"
+!		do loopy=1, N(i)
+!			write(12, *) (B(i,j), j=1, N(i))
+!		enddo
+!		write(12,*) ''
+!		write(12,*) ''
 		deallocate(A,B,C)
 	enddo
 
@@ -77,11 +91,28 @@ program q2_main
 !		write(12, *) (C(i,j), j=1, N)
 !	enddo
 	
-	open(unit=1, file="q2_output.txt")
+!	open(unit=1, file="q2_output.txt")
 	
-	write(1,format1) col1, col2, col3, col4, col5
+!	write(1,format1) col1, col2, col3, col4, col5
 
-	close(1)
-
+!	close(1)
+	write(12,*) "N's"
+	write(12,*) (N(loopy), loopy=1, sizer)
+	write(12,*) ''
+	write(12,*) ''
+	write(12,*) "Halves"
+	write(12,*) (half(loopy), loopy=1, sizer)
+	write(12,*) ''
+	write(12,*) ''
+	write(12,*) "Fulls"
+	write(12,*) (full(loopy), loopy=1, sizer)
+	write(12,*) ''
+	write(12,*) ''
+	write(12,*) "Counts"
+	write(12,*) (countN(loopy), loopy=1, sizer)
+	write(12,*) ''
+	write(12,*) ''
+	write(12,*) "Times"
+	write(12,*) (times(loopy), loopy=1, sizer)
 	deallocate(k,N)
 end program q2_main
